@@ -1,0 +1,763 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --clr--background-light: hsl(0, 0%, 97%);
+  --clr--background-dark: hsl(0, 0%, 2%);
+  --clr--background-dark-lighter: hsl(0, 0%, 15%);
+  --clr-title-dark: rgb(20, 20, 20);
+  --clr-title-light: rgb(255, 255, 255);
+  --clr-text-dark: rgb(36, 36, 36);
+  --clr-text-light: rgba(235, 235, 235, 0.732);
+  --clr-accent: hsl(229, 92%, 40%);
+
+  --brd-radius: 10px;
+
+  --box-shdw-four: 0 15px 25px hsla(0, 0%, 27%, 0.15),
+    0 5px 10px hsla(0, 0%, 41%, 0.05);
+}
+
+@keyframes colourChange {
+  0% {
+    filter: hue-rotate(0deg);
+  }
+  50% {
+    filter: hue-rotate(360deg);
+  }
+  100% {
+    filter: hue-rotate(0deg);
+  }
+}
+
+@keyframes navLinkFade {
+  0% {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateX(0px);
+  }
+}
+
+.carColourChange {
+  animation: colourChange 15s ease-in-out infinite;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  width: 100%;
+  overflow-x: hidden;
+  background: var(--clr--background-light);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+}
+
+h1 {
+  // text-transform: uppercase;
+  font-size: 5rem;
+  text-align: center;
+  color: var(--clr-title-light);
+}
+
+h3 {
+  font-size: 1.5rem;
+}
+
+.thin {
+  font-weight: 400;
+}
+
+.posR {
+  position: relative;
+}
+
+.posS {
+  position: sticky;
+  top: 0;
+}
+
+p {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  line-height: 1.65;
+  font-size: 1.25rem;
+  max-width: 30ch;
+  //   margin: auto;
+  font-weight: 600;
+  color: var(--clr-text-dark);
+}
+
+a {
+  all: unset;
+}
+
+button {
+  padding: 18px 32px;
+  border: none;
+  font-size: 1rem;
+  font-weight: bold;
+  border-radius: var(--brd-radius);
+}
+
+.primaryButton {
+  border: 2px solid var(--clr-accent);
+  background: var(--clr-accent);
+  color: var(--clr-title-light);
+}
+
+.secondaryButton {
+  border: 2px solid var(--clr-accent);
+  background: transparent;
+  color: var(--clr-accent);
+}
+
+.tertiaryButton {
+  border: 0px solid var(--clr-accent);
+  background: transparent;
+  color: var(--clr-title-light);
+  padding: 0;
+  cursor: pointer;
+}
+
+.dark {
+  background: var(--clr--background-dark);
+  h1,
+  h2,
+  h3,
+  h4 {
+    color: var(--clr-title-light);
+  }
+
+  p {
+    color: var(--clr-text-light);
+  }
+}
+
+.sectionPadding {
+  padding: 5em 0;
+}
+
+.footerSectionPadding {
+  padding: 4em 0;
+}
+
+.container {
+  max-width: 1400px;
+  margin: auto;
+  padding: 1em;
+}
+
+section {
+  h2 {
+    font-size: clamp(2rem, 3vw, 4rem);
+    text-align: center;
+  }
+}
+
+.chatBox {
+  position: fixed;
+  right: 20px;
+  top: 80vh;
+  z-index: 100;
+
+  .chatBoxIcon {
+    height: 50px;
+    width: 50px;
+    border-radius: 100%;
+    background: #001e50;
+  }
+}
+
+nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.925);
+  backdrop-filter: blur(5px);
+  z-index: 100;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-content: center;
+  padding: 1em;
+  box-shadow: var(--box-shdw-four);
+  min-height: 8vh;
+  align-items: center;
+
+  .logo {
+    width: 50px;
+    height: 30px;
+    filter: brightness(0%);
+    cursor: pointer;
+  }
+
+  .navLinks {
+    list-style: none;
+
+    width: 40%;
+
+    justify-content: space-around;
+    font-weight: 500;
+
+    li {
+      cursor: pointer;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+        Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+      color: var(--clr-text-dark);
+
+      a {
+        all: unset;
+        color: var(--clr-text-dark);
+      }
+
+      &:hover,
+      &:active {
+        color: var(--clr-accent);
+      }
+    }
+  }
+
+  .burgerMenu {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+    cursor: pointer;
+
+    .navLine {
+      height: 2px;
+      width: 50px;
+      background: rgb(0, 0, 0);
+      margin: 5px 0;
+    }
+  }
+}
+
+.hero {
+  height: 100vh;
+  width: 100vw;
+  position: relative;
+
+  .heroImg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    z-index: -1;
+
+    img {
+      object-fit: cover;
+      object-position: 50% 20%;
+      height: 100%;
+      width: 100%;
+    }
+  }
+
+  .heroTitle {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    h1 {
+      font-size: clamp(3rem, 3vw, 7rem);
+      color: var(--clr-title-dark);
+    }
+
+    h2 {
+      font-weight: 500;
+    }
+  }
+
+  .heroInfo {
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+
+    .largerbolder {
+      font-size: 1.75rem;
+      font-weight: 700;
+    }
+
+    .primaryButton {
+      background: white;
+
+      border: none;
+
+      a {
+        color: black;
+      }
+    }
+
+    .secondaryButton {
+      background: black;
+
+      border: none;
+
+      a {
+        color: white;
+      }
+    }
+
+    button {
+      cursor: pointer;
+      margin-top: 20px;
+    }
+  }
+}
+
+.pes {
+  background: var(--clr--background-light);
+  .pesImg {
+    height: 50vh;
+
+    img {
+      height: 100%;
+      width: 100%;
+      object-fit: cover;
+    }
+  }
+
+  .pesSectionInfo {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    p {
+      max-width: 70ch;
+      margin: 20px 0 5em 0;
+    }
+  }
+}
+
+.design {
+  .designSection {
+    background: var(--clr--background-light);
+
+    .container {
+      display: flex;
+      justify-content: space-between;
+
+      .designSectionTitle {
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        h3 {
+          margin: 1em 0;
+        }
+      }
+
+      .designIMG {
+        img {
+          max-width: 100%;
+        }
+      }
+    }
+  }
+}
+
+.colourChoice {
+  background: var(--clr--background-light);
+  .posS {
+    &:nth-of-type(2) {
+      // background: #7cdb7b;
+    }
+  }
+  .container {
+    text-align: center;
+    padding-top: 10em;
+
+    img {
+      width: 100%;
+      max-width: 800px;
+      object-fit: contain;
+    }
+  }
+
+  h3 {
+    text-align: center;
+    font-size: 2rem;
+  }
+}
+
+.gallerySection {
+  .gallery {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    position: relative;
+    width: 100%;
+
+    .galleryIMGContainer {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      clip-path: polygon(0 0, 0% 0, 0% 100%, 0% 100%);
+      transition: 0.4s ease-in-out;
+
+      .galleryIMG {
+        height: 100%;
+        width: 100%;
+        object-fit: contain;
+        cursor: pointer;
+      }
+    }
+
+    .galleryIMGShow {
+      clip-path: polygon(0% 0, 100% 0, 100% 100%, 0% 100%);
+      transition: 0.4s ease-in-out;
+    }
+  }
+
+  .galleryLinks {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+
+    button {
+      all: unset;
+      border: 2px solid var(--clr-text-light) !important;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      cursor: pointer;
+
+      &:hover {
+        background: var(--clr-text-light);
+      }
+    }
+
+    .galleryButtonSelected {
+      background: var(--clr-title-light);
+      border: 2px solid var(--clr-title-light);
+    }
+  }
+
+  .galleryInfo {
+    position: relative;
+    height: 300px;
+    margin-top: 50px;
+    width: 100%;
+
+    .galleryText {
+      position: absolute;
+      text-align: left;
+      visibility: hidden;
+
+      p {
+        max-width: 80ch;
+        color: var(--clr-text-light);
+        font-weight: 300;
+      }
+    }
+
+    .galleryTextSelected {
+      visibility: visible !important;
+    }
+  }
+}
+
+.showcaseOtherSection {
+  .otherShowcase {
+    .showcaseItem {
+      display: flex;
+
+      .itemIMG {
+        img {
+          width: 100%;
+        }
+      }
+
+      .itemInfo {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+
+        button {
+          margin-top: 20px;
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+}
+
+.otherElectricCars {
+  background: linear-gradient(90deg, #299393, #0e6167);
+
+  .title {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+
+    button {
+      margin-top: 20px;
+      color: #0d575c;
+      cursor: pointer;
+
+      a {
+        color: #0d575c;
+      }
+    }
+  }
+
+  .oECIMG {
+    margin: auto;
+
+    img {
+      width: 100%;
+      border-radius: 25px;
+    }
+  }
+}
+
+footer {
+  .title {
+    text-align: center;
+    margin-bottom: 40px;
+  }
+  .footerLinks {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    list-style: none;
+    justify-content: space-around;
+    text-align: center;
+
+    li {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+        Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+      width: 200px;
+      color: var(--clr-text-dark);
+      cursor: pointer;
+
+      a {
+        color: var(--clr-text-dark);
+
+        &:hover {
+          color: var(--clr-title-dark);
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+
+  .copyright h4 {
+    text-align: center;
+    margin-top: 40px;
+  }
+}
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 768px) {
+  .heroInfo p {
+    color: var(--clr-accent) !important;
+  }
+
+  .pes {
+    .pesImg {
+      width: 100%;
+    }
+  }
+
+  .designSection .container {
+    flex-direction: column;
+
+    .designIMG {
+      width: 100%;
+    }
+
+    p {
+      margin-bottom: 2em;
+    }
+  }
+
+  .gallery {
+    height: 40vh;
+  }
+
+  .itemIMG {
+    width: 100%;
+  }
+
+  .itemInfo {
+    width: 100%;
+    margin-top: 20px;
+  }
+
+  .showcaseItem {
+    flex-direction: column;
+    margin: 80px 0;
+  }
+
+  .oECIMG {
+    width: 100%;
+  }
+
+  .footerLinks li {
+    margin-bottom: 20px;
+  }
+}
+
+@media only screen and (max-width: 992px) {
+  .navLinks {
+    position: absolute;
+    right: 0px;
+    height: 92vh;
+    top: 8vh;
+    background: var(--clr--background-light);
+    min-width: 300px;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    transform: translateX(100%);
+    transition: all 0.4s ease;
+
+    li {
+      text-align: center;
+      width: 50%;
+      padding: 20px 0;
+      opacity: 0;
+      transform: translateX(50px);
+    }
+
+    .navLinksLine {
+      height: 2px;
+      width: 80%;
+      background: var(--clr-text-dark);
+    }
+  }
+
+  .navLinksShow {
+    transform: translateX(0);
+  }
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+  .sectionPaddingL {
+    padding: 10em 0;
+  }
+
+  .heroInfo p {
+    color: rgb(255, 255, 255) !important;
+  }
+
+  .pes {
+    display: flex;
+
+    .pesImg {
+      width: 50%;
+    }
+
+    .pesSectionInfo {
+      width: 80%;
+      margin: auto;
+    }
+  }
+
+  .designSection {
+    .container {
+      flex-direction: row;
+      .designIMG {
+        width: 50%;
+      }
+
+      //   .designSectionTitle {
+      //     width: 100%;
+      //   }
+    }
+
+    &:nth-of-type(even) {
+      .container {
+        flex-direction: row-reverse !important;
+      }
+    }
+  }
+
+  .gallery {
+    height: 60vh;
+  }
+
+  .galleryLinks {
+    margin-top: 20px;
+  }
+
+  .showcaseItem {
+    flex-direction: row;
+
+    &:nth-of-type(even) {
+      flex-direction: row-reverse;
+    }
+  }
+
+  .itemIMG {
+    width: 50%;
+  }
+
+  .itemInfo {
+    width: 50%;
+  }
+
+  .oECIMG {
+    width: 50%;
+  }
+
+  .showcaseOtherSection {
+    padding-top: 0 !important;
+  }
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+  .sectionPadding {
+    padding: 10em 0;
+  }
+
+  .navLinks {
+    display: flex !important;
+    min-width: 700px;
+    flex-direction: row;
+    align-items: center;
+
+    .navLinksLine {
+      display: none;
+    }
+  }
+
+  .burgerMenu {
+    display: none !important;
+  }
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+}
